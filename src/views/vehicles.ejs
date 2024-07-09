@@ -1,0 +1,65 @@
+<%- include("partials/_header") %>
+
+  <div class="container d-flex justify-content-center mt-5">
+    <div class="row">
+      <div class="col-md-10">
+        <table class="table table-dark table-bordered table-hover">
+          <thead>
+            <tr>
+              <td>Nombre</td>
+              <td>Apellido</td>
+              <td>Localidad</td>
+              <td>Matricula</td>
+              <td>Marca</td>
+              <td>Modelo</td>
+              <td>Año</td>
+              <td>Kilometros</td>
+              <td>Descripcion</td>
+            </tr>
+          </thead>
+          <tbody>
+            <% if (vehiculos) { %>
+              <% for(var i=0; i < vehiculos.length; i++) { %>
+                <tr>
+                  <td>
+                    <%= i + 1 %>
+                  </td>
+                  <td>
+                    <%= vehiculos[i].matricula %>
+                  </td>
+                  <td>
+                    <%= vehiculos[i].marca %>
+                  </td>
+                  <td>
+                    <%= vehiculos[i].modelo %>
+                  </td>
+                  <td>
+                    <%= vehiculos[i].año %>
+                  </td>
+                  <td>
+                    <%= vehiculos[i].kilometros %>
+                  </td>
+                  <td>
+                    <%= vehiculos[i].descripcion %>
+                  </td>
+                  <td class="d-flex gap-2">
+                    <a href="/>" class="btn btn-danger">
+                      Aceptar
+                    </a>
+                  </td>                  <td class="d-flex gap-2">
+                    <a href="/>" class="btn btn-danger">
+                      Rechazar
+                    </a>
+                  </td>
+                </tr>
+                <% } %>
+                  <% } %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  </div>
+  </div>
+
+  <%- include("partials/_footer") %>

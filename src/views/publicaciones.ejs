@@ -1,0 +1,255 @@
+<%- include("partials/_header") %>
+
+
+
+  <% if (publicaciones.length !=0) { %>
+    <div class="d-flex justify-content-center">
+      <div>
+        <form class="d-flex justify-content-center p-2 " action="/searchPublication" method="post">
+          <input type="text" class="form-control" name="description" placeholder="descripción...">
+          <button type="submit" class="btn btn-primary align-center"> Buscar</button>
+        </form>
+
+      </div>
+      <!-- Zona de dropdown para el filtrado -->
+      <div class="dropdown mx-5 p-2">
+        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Filtrado
+        </button>
+        <ul class="dropdown-menu dropdown-menu-light">
+          <li>
+            <form class="px-2" action="/filterPublications" method="post">
+              <!-- Filtrar por Manga -->
+              <div class="mb-3">
+                <p>Filtro por manga</p>
+                <input type="text" class="form-control" name="minimoManga" placeholder="Minimo...Manga">
+                <br>
+                <input type="text" class="form-control" name="maximoManga" placeholder="Maximo...Manga">
+              </div>
+              <hr class="dropdown-divider">
+
+              <!-- Filtrar por Eslora -->
+              <div class="mb-3">
+                <p>Filtro por eslora</p>
+                <input type="text" class="form-control" name="minimoEslora" placeholder="Minimo...Eslora">
+                <br>
+                <input type="text" class="form-control" name="maximoEslora" placeholder="Maximo...Eslora">
+              </div>
+              <hr class="dropdown-divider">
+
+              <!-- Filtrar por Puerto -->
+              <div class="mb-3 ">
+                <p>Filtro por Número de puerto</p>
+                <input type="text" class="form-control" name="minimoPuerto" placeholder="Minimo...Puerto">
+                <br>
+                <input type="text" class="form-control" name="maximoPuerto" placeholder="Maximo...Puerto">
+              </div>
+              <hr class="dropdown-divider">
+
+              <!-- Botón para enviar el todos los rangos -->
+              <button type="submit" class="btn btn-primary align-center">Filtrar</button>
+            </form>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Zona de el dropdown para el ordenamiento -->
+      <div class="dropdown mx-5 p-2">
+        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Ordenar
+        </button>
+        <ul class="dropdown-menu dropdown-menu-light">
+          <li>
+            <form class="px-2" action="/orderPublications" method="post">
+              <!-- Ordenar por Manga -->
+              <div class="mb-1 p-1    ">
+                <p>Ordenar por</p>
+                <select class="form-select" name="ordenamiento" aria-label="Default select example">
+                  <option value="manga">Manga</option>
+                  <option value="eslora">Eslora</option>
+                  <option value="idPuerto">Puerto</option>
+                </select>
+                <p>De manera</p>
+                <select class="form-select" name="tipoDeOrden" aria-label="Default select example">
+                  <option value="ASC">Ascendente</option>
+                  <option value="DESC">Descendente</option>
+                </select>
+              </div>
+              <button type="submit" class="btn btn-primary align-center">Ordenar</button>
+            </form>
+            <!-- Ordenar por Eslora
+              <div class="mb-3">
+                <p>Ordenar por eslora</p>
+
+              </div>
+              <hr class="dropdown-divider">
+
+               Ordenar por Puerto 
+              <div class="mb-3">
+                <p>Ordenar por Número de puerto</p>
+                <select class="form-select" name="idPuerto" aria-label="Default select example">
+                  <option value="">Ninguna</option>
+                  <option value="Ascendente">Ascendente</option>
+                  <option value="Descendente">Descendente</option>
+                </select>
+              </div>
+              <hr class="dropdown-divider">
+
+              Botón para enviar el todos los rangos 
+              <button type="submit" class="btn btn-primary align-center">Ordenar</button>  -->
+
+          </li>
+        </ul>
+      </div>
+    </div>
+    <% } %>
+      <div class="container d-flex justify-content-center mt-5">
+        <div class="row">
+          <div class="col-md-10">
+
+            <table class="table table-dark table-bordered table-hover">
+              <thead>
+                <tr>
+                  <td> N°</td>
+                  <td>Numero de puerto</td>
+                  <td>Matricula</td>
+                  <td>Manga</td>
+                  <td>Eslora</td>
+                  <td>Descripcion</td>
+                  <td>Actions</td>
+                  <!-- <% if (roleCookie=="admin" ) { %>                
+              <% } %> -->
+                </tr>
+              </thead>
+              <tbody>
+                <% if (publicaciones) { %>
+                  <% for(var i=0; i < publicaciones.length; i++) { %>
+                    <tr>
+                      <td>
+                        <%= i + 1 %>
+                      </td>
+                      <td>
+                        <%= publicaciones[i].idPuerto %>
+                      </td>
+                      <td>
+                        <%= publicaciones[i].plate %>
+                      </td>
+                      <td>
+                        <%= publicaciones[i].manga %>
+                      </td>
+                      <td>
+                        <%= publicaciones[i].eslora %>
+                      </td>
+                      <td>
+                        <%= publicaciones[i].description %>
+                      </td>
+                      <% if (roleCookie=="admin" ) { %>
+                        <td class="d-flex gap-2">
+                          <a href="/deletePublication/<%= publicaciones[i].idPublication %>" class="btn btn-danger">
+                            Delete
+                          </a>
+                        </td>
+                        <% } %>
+                          <% if (typeof verMisPublicaciones==='undefined' ) { %>
+                            <!-- Si no se pasa el parametro se le asigna falso -->
+                            <% verMisPublicaciones=false; } %>
+                              <% if ((roleCookie=="user" ) && (!verMisPublicaciones)) { %>
+                                <!-- Si no estoy viendo mis propias publicaciones y soy un user, puedo ofertar por las publicaciones-->
+
+                                <td class="d-flex gap-2 px-2 bg-dark">
+                                  <% if (idUser !=publicaciones[i].idUser) { %>
+                                    <a href="/renderMakeOffer/<%= publicaciones[i].idPublication %>"
+                                      class="btn btn-danger ">
+                                      Ofertar
+                                    </a>
+                                    <div class="btnsheart">
+                                      <% if (typeof favoritos!=='undefined' ) { %>
+                                        <% const isFavorito=(id)=> {
+                                          return favoritos.some(favorito => favorito.idPublication === id);
+                                          };
+                                          %>
+
+                                          <% if (isFavorito(publicaciones[i].idPublication)) { %>
+                                            <Button id="btnh2" class="btnh1 toggle-like" style="color: red"
+                                              value="<%= publicaciones[i].idPublication %>"
+                                              data-user-id="<%= idUser %>"><i class="fas fa-heart"></i>
+                                            </Button>
+                                            <% } else {%>
+                                              <Button id="btnh2" class="btnh1 toggle-like"
+                                                value="<%= publicaciones[i].idPublication %>"
+                                                data-user-id="<%= idUser %>"><i class="fas fa-heart"></i>
+                                              </Button>
+                                              <% } %>
+                                                <% } %>
+                                    </div>
+                                    <% } %>
+                                </td>
+                                <% } %>
+                                  <% if (verMisPublicaciones) { %>
+                                    <td class="d-flex gap-2">
+                                      <a href="/editPublication/<%= publicaciones[i].idPublication %>"
+                                        class="btn btn-info">
+                                        Editar
+                                      </a>
+                                    </td>
+                                    <% } %>
+                    </tr>
+                    <% } %>
+                      <% } %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      </div>
+      </div>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+        </script>
+
+
+      <script>
+        document.addEventListener('DOMContentLoaded', function () {
+          // Selecciona todos los botones con la clase 'toggle-like'
+          var likeButtons = document.querySelectorAll('.toggle-like');
+
+          likeButtons.forEach(button => {
+            button.addEventListener('click', function () {
+              var publicationId = this.value;
+              var userId = this.getAttribute('data-user-id');
+
+              console.log("Publication ID: " + publicationId);
+              console.log("User ID: " + userId);
+
+              if (this.style.color === "red") {
+                this.style.color = "grey";
+              } else {
+                this.style.color = "red";
+              }
+
+              // Enviar solicitud a la ruta de Express
+              fetch('/toggle-like', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                  userId: userId,
+                  publicationId: publicationId
+                })
+              })
+                .then(response => response.json())
+                .then(data => console.log(data))
+                .catch(error => console.error('Error:', error));
+            });
+          });
+        });
+      </script>
+
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+      </body>
+
+      <link rel="stylesheet" href="styles/heart.css">
+      <%- include("partials/_footer") %>

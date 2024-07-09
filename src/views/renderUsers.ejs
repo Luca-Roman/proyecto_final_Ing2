@@ -1,0 +1,40 @@
+<%- include("partials/_header") %>
+
+<div class="container d-flex justify-content-center mt-5">
+    <div class="col-md-10">
+      <table class="table table-dark table-bordered table-hover">
+        <thead>
+          <tr>
+            <td>N°</td>
+            <td>Nombre</td>
+            <td>Apellido</td>
+            <td>Email</td>
+            <td>DNI</td>
+            <td>Telefono</td>
+            <td>Localidad</td>
+            <td>Acciones</td>
+          </tr>
+        </thead> 
+        <tbody>
+          <% if (users) { %> <% for(var i = 0; i < users.length; i++) { %>
+          <tr>
+            <td><%= (i + 1) %></td>
+            <td><%= users[i].name %></td>
+            <td><%= users[i].lastName %></td>
+            <td><%= users[i].email %></td>
+            <td><%= users[i].dni %></td>
+            <td><%= users[i].phoneNumber %></td>
+            <td><%= users[i].locality %></td>
+            <td class="d-flex gap-2">
+              <a href="/deleteUser/<%= users[i].idUser %>" class="btn btn-danger">
+                Delete
+              </a>
+            </td>
+          </tr>
+          <% } %> <% } %>
+        </tbody>       
+      </table>
+    </div>
+</div>
+
+<%- include("partials/_footer") %>

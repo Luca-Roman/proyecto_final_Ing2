@@ -1,0 +1,98 @@
+<%- include("partials/_header") %>
+
+  <% if (user) { %>
+
+    <div class="d-flex justify-content-center  ">
+      <div class="card align-items-left col-md-5">
+        <div class="card-body d-flex flex-column">
+          <h2 class=" fs-3 text-center">Información de perfil</h2>
+
+          <p><span class="text-info text-left ml-1"> Nombre: </span>
+            <%= user.name%>
+          </p>
+
+
+          <p class="">
+            <span class="text-info text-left"> Apellido: </span>
+            <%= user.lastName%>
+          </p>
+          <p>
+            <span class="text-info text-left"> Mail: </span>
+            <%= user.email%>
+          </p>
+          <p>
+            <span class="text-info"> Localidad: </span>
+            <%= user.locality%>
+          </p>
+          <p>
+            <span class="text-info"> DNI: </span>
+            <%= user.dni%>
+          </p>
+          <p>
+            <span class="text-info ml-1">Numero De Teléfono: </span>
+            <%= user.phoneNumber%>
+          </p>
+          <p>
+            <span class="text-info"> Fecha de nacimiento: </span>
+            <% const birthdate=new Date(user.birthdate); const day=birthdate.getDate().toString().padStart(2, '0' );
+              const month=(birthdate.getMonth() + 1).toString().padStart(2, '0' ); const year=birthdate.getFullYear();
+              const formattedDate=`${day}/${month}/${year}`; %>
+              <%= formattedDate%>
+          </p>
+
+
+        </div>
+        <div class=" d-flex justify-content-center">
+          <a href="/editProfile" class="btn btn-primary align-center px-2 mx-3"> Editar
+            Información</a>
+          <a href="/changePassword" class="btn btn-primary align-center  mx-3"> Cambiar
+            contraseña</a>
+          <a href="/deleteAccount" class="btn btn-primary align-center  mx-3"> Borrar
+            cuenta</a>  
+        </div>
+      </div>
+
+
+    </div>
+    <!-- <div class="container d-flex justify-content-center">
+    <div class="col-md-5">
+      <div class="card">
+        <div class="card-body">
+          <form action="add/new" method="post">
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">Nombre</label>
+              <input type="text" class="form-control" name="name" placeholder="<%= user.name %>">
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">Apellido</label>
+              <input type="text" class="form-control" name="lastName" placeholder="<%= user.lastName %>">
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputPassword1" class="form-label">Email</label>
+              <input type="text" class="form-control" name="email" placeholder="<%= user.email %>">
+            </div> 
+            <div class="mb-3">
+              <label for="exampleInputPassword1" class="form-label">DNI</label>
+              <input type="text" class="form-control" name="email" placeholder="<%= user.dni %>">
+            </div> 
+            <div class="mb-3">
+              <label for="exampleInputPassword1" class="form-label">Nro Telefono</label>
+              <input type="text" class="form-control" name="phoneNumber" placeholder="<%= user.phoneNumber %>">
+            </div> 
+            <div class="mb-3">
+              <label for="exampleInputPassword1" class="form-label">Localidad</label>
+              <input type="text" class="form-control" name="locality" placeholder="<%= user.locality %>">
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputPassword1" class="form-label">Nro Puerto</label>
+              <input type="text" class="form-control" name="idPuerto" placeholder="<%= user.idPuerto %>">
+            </div>                    
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+        </div>
+      </div>    
+    </div>
+  </div> -->
+    <% } %>
+
+      <%- include("partials/_footer") %>

@@ -1,0 +1,54 @@
+<%- include("partials/_header") %>
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8" />
+        <title>Puerto aventura</title>
+        <!-- NAVIGATION -->
+        <link rel="stylesheet" href="https://bootswatch.com/5/darkly/bootstrap.min.css">
+        <link rel="stylesheet" href="/styles/index.css" />
+    </head>
+
+    <body>
+        <div class="d-flex justify-content-center align-content-center">
+            <div class="card align-items-center">
+                <div class="card-body  col-md-4">
+                    <h2 class=" fs-3 text-center">Información de perfil</h2>
+                    <form action="/saveEdit" method="post">
+                        <label class="text-light form-label">
+                            <p class="text-info">Nombre: </p>
+                            <input type="text" class="form-Control" name="name" placeholder="<%= user.name%>">
+                        </label>
+                        <label class="text-light form-label">
+                            <p class="text-info">Apellido: </p>
+                            <input type="text" class="form-Control" name="lastName" placeholder="<%= user.lastName%>">
+                        </label>
+                        <label class="text-light form-label ">
+                            <p class="text-info">Mail: </p>
+                            <input type="text" name="email" placeholder="<%= user.email%>">
+                        </label>
+                        <label class="text-light  ">
+                            <p class="text-info">Localidad: </p>
+                            <input type="text" name="locality" placeholder="<%= user.locality%>">
+                        </label>
+                        <label class="text-light">
+                            <p class="text-info">DNI: </p>
+                            <input type="number" name="dni" placeholder="<%= user.dni%>">
+                        </label>
+                        <label class="text-light">
+                            <p class="text-info">Número de teléfono: </p>
+                            <input type="number" name="phoneNumber" placeholder="<%= user.phoneNumber%>">
+                        </label>
+                        <label class="text-light">
+                            <p class="text-info">Fecha de nacimiento: </p>
+                            <input type="date" name="birthdate" placeholder="<%= user.birthdate%>">
+                        </label>
+                </div>
+                <button type="submit" class="btn btn-primary align-center"> Confirmar   
+                    Cambios</button>
+            </div>
+            </form>
+        </div>
+
+    </body>

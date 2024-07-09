@@ -1,0 +1,15 @@
+body {
+  background: #202020;
+  color: white;
+
+}
+
+.logo {
+  height: 100px;
+  width: 100px;
+}
+
+.imagenEmbarcacion {
+  width: 600px;
+  height: 450px;
+}

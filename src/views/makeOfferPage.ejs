@@ -1,0 +1,39 @@
+<%- include("partials/_header") %>
+
+<div class="container d-flex justify-content-center">
+    <div class="col-md-5">
+      <div class="card">
+        <div class="card-body">
+          <form action="createOffer/<%= publicacion %>" method="post">
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">Matricula</label>
+              <input type="text" class="form-control" name="matricula" required>
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">Marca</label>
+              <input type="text" class="form-control" name="marca" required>
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">Modelo</label>
+              <input type="text" class="form-control" name="modelo" required>
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">Año</label>
+              <input type="text" class="form-control" name="ano" required>
+            </div>
+            <div class="mb-3">
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">Kilometros</label>
+              <input type="text" class="form-control" name="kilometros" required>
+            </div>
+              <label for="exampleInputEmail1" class="form-label">Descripcion</label>
+              <input type="text" class="form-control" name="description">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+        </div>
+      </div>    
+    </div>
+  </div>
+  
+  <%- include("partials/_footer") %>

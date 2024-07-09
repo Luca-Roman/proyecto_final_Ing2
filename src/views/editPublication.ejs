@@ -1,0 +1,34 @@
+<%- include("partials/_header") %>
+    <body>
+        <div class="d-flex justify-content-center align-content-center">
+            <div class="card align-items-center">
+                <h2 class=" fs-2 px-1 mx-2 mt-5">Información de la publicación</h2>
+                <div class="card-body  col-md-4">
+
+                    <form action="/saveEditPublication" method="post">
+                        <label class="text-light form-label">
+                            <p class="text-info">Matricula: </p>
+                            <input type="text" class="form-Control" name="plate" placeholder="<%= publication.plate%>">
+                        </label>
+                        <label class="text-light form-label">
+                            <p class="text-info">Description: </p>
+                            <input type="text" class="form-Control" name="description"
+                                placeholder="<%= publication.description%>">
+                        </label>
+                        <label class="text-light form-label ">
+                            <p class="text-info">Manga: </p>
+                            <input type="text" name="manga" placeholder="<%= publication.manga%>">
+                        </label>
+                        <label class="text-light">
+                            <p class="text-info">Eslora: </p>
+                            <input type="text" name="eslora" placeholder="<%= publication.eslora%>">
+                            <input type="hidden" name="idPublication" value="<%= publication.idPublication%>">
+                        </label>
+
+                </div>
+                <button type="submit" class="btn btn-primary align-center "> Enviar a Revisión</button>
+            </div>
+            </form>
+        </div>
+
+    </body>

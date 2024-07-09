@@ -1,0 +1,43 @@
+<%- include("partials/_header") %>
+
+    <div class="container d-flex justify-content-center mt-5">
+        <div class="row">
+            <div class="col-md-10">
+                <table class="table table-dark table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <td> N°</td>
+                            <td>Mensaje </td>
+
+                            <!-- <% if (roleCookie=="admin" ) { %>                
+              <% } %> -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% if (notifications) { %>
+                            <% for(var i=notifications.length - 1 ; i>= 0 ; i--) { %>
+                                <tr>
+                                    <td>
+                                        <%= (notifications.length - i) %>
+                                    </td>
+                                    <td>
+                                        <%= notifications[i].description %>
+                                    </td>
+                                    <td class="d-flex gap-2">
+                                        <a class="text-decoration-none p-2"
+                                            href="/deleteNotification/<%= notifications[i].idNotification %>">
+                                            <strong> X </strong>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <% } %>
+                                    <% } %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+
+    <%- include("partials/_footer") %>

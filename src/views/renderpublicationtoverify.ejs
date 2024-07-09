@@ -1,0 +1,37 @@
+<%- include("partials/_header") %>
+
+<div class="container d-flex justify-content-center mt-5">
+    <div class="col-md-10">
+      <table class="table table-dark table-bordered table-hover">
+        <thead>
+          <tr>
+            <td>Descripcion</td>
+            <td>Matricula</td>
+            <td>Manga</td>
+            <td>Eslora</td>
+          </tr>
+        </thead> 
+        <tbody>
+          <% if (publications) { %> <% for(var i = 0; i < publications.length; i++) {
+          %>
+          <tr>
+            <td><%= publications[i].description %></td>
+            <td><%= publications[i].plate %></td>
+            <td><%= publications[i].manga %></td>
+            <td><%= publications[i].eslora %></td>
+            <td class="d-flex gap-2">
+              <a href="/accepted/<%= publications[i].idPublicationToVerify %>" class="btn btn-info">
+                Aceptar
+              </a>
+              <a href="/declined/<%= publications[i].idPublicationToVerify %>" class="btn btn-danger">
+                Rechazar
+              </a>
+            </td>
+          </tr>
+          <% } %> <% } %>
+        </tbody>       
+      </table>
+    </div>
+</div>
+
+<%- include("partials/_footer") %>

@@ -1,0 +1,39 @@
+<%- include("partials/_header") %>
+
+
+
+    <div class="d-flex justify-content-center  ">
+        <div class="card align-items-left col-md-5">
+            <div class="card-body d-flex flex-column">
+                <h2 class=" fs-3 text-center">Estadísticas de usuarios</h2>
+
+                <p><span class="text-info text-left ml-1"> Cantidad de usuarios registrados: </span>
+                    <%= users %>
+                </p>
+
+
+                <p class="">
+                    <span class="text-info text-left"> Cantidad de publicaciones activas: </span>
+                    <%= publicaciones %>
+                </p>
+                <p>
+                    <span class="text-info text-left"> Cantidad de ofertas realizadas: </span>
+                    <%= ofertas %>
+                </p>
+                <p>
+                    <span class="text-info"> Cantidad de intercambios realizados: </span>
+                    <%= intercambios %>
+                </p>
+
+
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+
+    <%- include("partials/_footer") %>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Puerto aventura</title>
+  <!-- NAVIGATION -->
+  <link rel="stylesheet" href="https://bootswatch.com/5/darkly/bootstrap.min.css">
+
+  <link rel="stylesheet" href="/styles/index.css" />
+</head>
+
+<body>
+  <div class="container">
+    <header class="d-flex flex-wrap justify-content-md-between py-3 mb-4 border-bottom">
+      <div class="col-md-1 mb-2 mb-md-0">
+        <a href="/" class="d-inline-flex link-body-emphasis text-decoration-none">
+          <img src="logoPuertoA.png" class=" img-fluid logo" alt="puerto-aventura-logo">
+        </a>
+      </div>
+
+      <ul class="nav col-12 col-md-auto mb-2 justify-content-center ">
+        <li><a href="/" class="nav-link px-2 fs-5">Home</a></li>
+        <li><a href="/renderPublications" class="nav-link px-2 fs-5">Publicaciones</a></li>
+        <% if (emailCookie !=="empty@gmail.com" ) { %>
+          <li><a href="/renderNotification" class="nav-link px-2 fs-5">Mis notificaciones</a></li>
+          <li><a href="/createPublication" class="nav-link px-2 fs-5">Crear publicacion</a></li>
+          <li><a href="/renderOfertas" class="nav-link px-2 fs-5">Mis ofertas</a></li>
+          <li><a href="/renderUserPosts" class="nav-link px-2 fs-5">Mis publicaciones </a></li>
+          <li><a href="/renderFavourite" class="nav-link px-2 fs-5">Mis favoritos </a></li>
+          <% if (roleCookie==="admin" ) { %>
+            <li><a href="/verifyPublication" class="nav-link px-2 fs-5">Verificar publicaciones</a></li>
+            <li><a href="/renderUsers" class="nav-link px-2 fs-5">Usuarios</a></li>
+            <li><a href="/renderofferstoverify" class="nav-link px-2 fs-5">Verificar intercambios</a></li>
+            <li><a href="/renderEstadistics" class="nav-link px-2 fs-5">Estadísticas de usuarios</a></li>
+            <% } %>
+              <% if (roleCookie==="user" ) { %>
+                <!-- <li><a href="/renderVehicles" class="nav-link px-2 fs-5">Vehiculos</a></li> -->
+                <% } %>
+                  <% } %>
+      </ul>
+
+      <div class="col-md-2 d-flex flex-wrap align-items-center justify-content-center">
+        <% if (emailCookie !=="empty@gmail.com" ) { %>
+          <a href="/profile" class="mb-2>">
+            <button type="button" class="btn btn-outline-primary bg-info text-black"> <strong> Ver perfil
+              </strong></button>
+          </a>
+
+          <a href="/logout">
+            <button type="button" class="btn btn-outline-primary mx-2 bg-info text-black"> <strong>Cerrar sesion
+              </strong></button>
+          </a>
+          <% } else { %>
+            <a href="/add">
+              <button type="button" class="btn btn-primary m-3 p-2 bg-info text-black"><strong> Registrarse
+                </strong></button>
+            </a>
+            <a href="/login">
+              <button type="button" class="btn btn-primary me-2 m-3 p-2 bg-info text-black"><strong> Iniciar sesion
+                </strong></button>
+            </a>
+            <% } %>
+      </div>
+
+    </header>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,15 @@
+<%- include("partials/_header") %>
+
+<div class="container d-flex justify-content-center">
+  <div class="col-md-5">
+    <div class="card">
+      <div class="card-body">        
+        <p class="text-light">Esta seguro que quiere borrar su cuenta? Esta accion sera permanente y no podra recuperarla nunca mas.</p>        
+        <button onclick="window.location.href='/profile'" class="btn btn-primary">Rechazar</button>
+        <button onclick="window.location.href='/deleteAccount2'" class="btn btn-primary">Aceptar</button>        
+      </div>
+    </div> 
+  </div>
+</div>
+
+<%- include("partials/_footer") %>
